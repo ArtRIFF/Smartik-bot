@@ -1,0 +1,17 @@
+{
+  "name": "smartik-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type" : "module",
+  "scripts": {
+    "start": "node smartik"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "telegraf": "^4.8.5"
+  }
+}
