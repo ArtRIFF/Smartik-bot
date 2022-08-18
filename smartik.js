@@ -42,13 +42,20 @@ bot.command('ping', ctx => ctx.reply("/pong"));
 bot.on('message', ctx => {
   const message = ctx.message.text;
   if (typeof message === 'string' && checkTriggerWords(message)) {
-    phrasesRecord(message);
+    try {
+      phrasesRecord(message);     
+    } catch (error) {
+      console.log("phrase record error");
+    }
     ctx.reply(randomPhraseGenerator());
   }
 });
 
 bot.launch();
 
+// let phrase = 'Может ты песшить стал "бля, какого хуя? Поехали, бак не пустой, тут не далеко, кассир отмена"';
 
-
+// if(phrase.includes('"'));
+// phrase = phrase.replace(/"/g, " ")
+// console.log(phrase);
 
