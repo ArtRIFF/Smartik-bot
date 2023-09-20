@@ -1,12 +1,11 @@
 import fs from 'fs';
 import phrasesReader from './phrasesReader.js';
-function phrasesRecord(phrase) {
-  let arrBase = phrasesReader();
+async function phrasesRecord(phrase) {
+  let arrBase = await phrasesReader();
   arrBase.push(phrase);
-  let jsonBase;
   try {
     const jsonBase = JSON.stringify(arrBase);
-    fs.writeFile('phraseBase.json', jsonBase, err => {
+    fs.writeFileSync('phraseBase.json', jsonBase, err => {
       if (err) {
         console.error("Can`t record phrase in pharse base");
       }
