@@ -39,17 +39,24 @@ bot.command('menu', ctx => {
 
 bot.command('ping', ctx => ctx.reply("/pong"));
 
-bot.on('message', async(ctx) => {
+let startTimestump;
+bot.start(() => {
+  startTimestump = Date.now();
+});
+
+bot.on('message', async (ctx) => {
   const message = ctx.message.text;
+  const messageTimestump = ctx.message.date * 1000;
   if (typeof message === 'string' && checkTriggerWords(message)) {
     try {
-     await phrasesRecord(message);
+      await phrasesRecord(message);
     } catch (error) {
       console.log("phrase record error");
     }
     const phrase = await randomPhraseGenerator();
-    console.log(phrase);
-    await ctx.reply(phrase);
+    if (messageTimestump >= startTimestump) {
+      await ctx.reply(phrase);
+    }
   }
 });
 
